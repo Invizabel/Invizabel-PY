@@ -5,6 +5,7 @@ from cryptography.hazmat.primitives.asymmetric import ed25519
 import argparse
 import base64
 import hashlib
+import multiprocessing
 import os
 import re
 import requests
@@ -33,4 +34,7 @@ if args.b64_crack == True:
     b64_crack()
 
 if args.tor_v3 == True:
+    if args.threads == None:
+        args.threads = multiprocessing.cpu_count()
+
     tor_v3_main(args.file, args.threads, args.verify, args.vanity, args.verbose)

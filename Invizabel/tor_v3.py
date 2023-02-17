@@ -1,7 +1,6 @@
 from cryptography.hazmat.primitives.asymmetric import ed25519
 import base64
 import hashlib
-import multiprocessing
 import re
 import requests
 import sys
@@ -134,7 +133,7 @@ def tor_v3_verify(tor_verify):
 
     sys.exit()
 
-def tor_v3_main(file = None, tor_threads = multiprocessing.cpu_count(), tor_verify = None, vanity = None, verbose = True):
+def tor_v3_main(file = None, tor_threads = 1, tor_verify = None, vanity = None, verbose = True):
     if tor_verify != None:
             threading.Thread(target = tor_v3_verify, args = (tor_verify,)).start()
 
